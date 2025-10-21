@@ -4,51 +4,61 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>เช็คเลขที่บ้านคอนโด</title>
-    <style>
+   <style>
         body {
             font-family: Arial, sans-serif;
-            display: grid;
-            place-items: center;
-            min-height: 100vh;
-            background-color: #f4f4f4;
-            margin: 0;
+            /* เปลี่ยนการจัดวางจาก grid เป็น flex เพื่อความยืดหยุ่นในการเลื่อน */
+            display: flex;
+            flex-direction: column;
+            justify-content: center; /* พยายามจัดให้อยู่ตรงกลางตามแนวตั้ง */
+            align-items: center; /* จัดให้อยู่ตรงกลางตามแนวนอน */
+            min-height: 100vh; /* ให้สูงเต็มจอสำหรับ Desktop */
+            background-color: #f4f4f4; /* */
+            margin: 0; /* */
+            
+            /* **การแก้ไข: เพิ่ม padding ด้านล่างให้มากพอ** */
+            /* สิ่งนี้จะทำให้หน้ามีพื้นที่ว่างให้เลื่อนขึ้นเพื่อหนีแป้นพิมพ์บนมือถือ */
+            padding-bottom: 250px; 
+            padding-top: 20px;
+            box-sizing: border-box; /* สำคัญ: รวม padding ในการคำนวณความสูง */
         }
         .container {
-            background: #fff;
-            padding: 2rem;
-            border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            width: 300px;
+            background: #fff; /* */
+            padding: 2rem; /* */
+            border-radius: 8px; /* */
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1); /* */
+            width: 300px; /* */
+            max-width: 90%; /* เพิ่ม max-width เพื่อให้แสดงผลดีขึ้นบนจอเล็กมาก */
         }
         label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: bold;
+            display: block; /* */
+            margin-bottom: 0.5rem; /* */
+            font-weight: bold; /* */
         }
         input[type="text"] {
-            width: 100%;
-            padding: 0.75rem;
+            width: 100%; /* */
+            padding: 0.75rem; /* */
             box-sizing: border-box; /* เพื่อให้ padding ไม่ขยายกล่อง */
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            font-size: 1.2rem;
+            border: 1px solid #ccc; /* */
+            border-radius: 4px; /* */
+            font-size: 1.2rem; /* */
         }
         #result-box {
-            margin-top: 1.5rem;
-            padding: 1rem;
-            background: #e9f5ff;
-            border: 1px solid #b3d7ff;
-            border-radius: 4px;
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: #0056b3;
-            text-align: center;
-            min-height: 50px;
+            margin-top: 1.5rem; /* */
+            padding: 1rem; /* */
+            background: #e9f5ff; /* */
+            border: 1px solid #b3d7ff; /* */
+            border-radius: 4px; /* */
+            font-size: 1.5rem; /* */
+            font-weight: bold; /* */
+            color: #0056b3; /* */
+            text-align: center; /* */
+            min-height: 50px; /* */
         }
         .placeholder {
-            color: #999;
-            font-weight: normal;
-            font-size: 1.1rem;
+            color: #999; /* */
+            font-weight: normal; /* */
+            font-size: 1.1rem; /* */
         }
     </style>
 </head>
@@ -1427,4 +1437,5 @@
     </script>
 
 </body>
+
 </html>
