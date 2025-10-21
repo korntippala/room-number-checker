@@ -5,60 +5,93 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>เช็คเลขที่บ้านคอนโด</title>
    <style>
+        /* ** Global Styles & Layout ** */
         body {
-            font-family: Arial, sans-serif;
-            /* เปลี่ยนการจัดวางจาก grid เป็น flex เพื่อความยืดหยุ่นในการเลื่อน */
+            font-family: 'Poppins', 'Kanit', sans-serif; /* ใช้ฟอนต์ที่ดูทันสมัยและสะอาดตา */
             display: flex;
             flex-direction: column;
-            justify-content: center; /* พยายามจัดให้อยู่ตรงกลางตามแนวตั้ง */
-            align-items: center; /* จัดให้อยู่ตรงกลางตามแนวนอน */
-            min-height: 100vh; /* ให้สูงเต็มจอสำหรับ Desktop */
-            background-color: #f4f4f4; /* */
-            margin: 0; /* */
-            
-            /* **การแก้ไข: เพิ่ม padding ด้านล่างให้มากพอ** */
-            /* สิ่งนี้จะทำให้หน้ามีพื้นที่ว่างให้เลื่อนขึ้นเพื่อหนีแป้นพิมพ์บนมือถือ */
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh; 
+            background-color: #f5f7fa; /* สีพื้นหลังโทนอ่อนนุ่มนวล */
+            margin: 0;
+            /* เพิ่ม padding ด้านล่างให้มากพอสำหรับมือถือและแป้นพิมพ์ */
             padding-bottom: 250px; 
-            padding-top: 20px;
-            box-sizing: border-box; /* สำคัญ: รวม padding ในการคำนวณความสูง */
+            padding-top: 30px;
+            box-sizing: border-box;
         }
+        
+        /* ** Container Styles ** */
         .container {
-            background: #fff; /* */
-            padding: 2rem; /* */
-            border-radius: 8px; /* */
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1); /* */
-            width: 300px; /* */
-            max-width: 90%; /* เพิ่ม max-width เพื่อให้แสดงผลดีขึ้นบนจอเล็กมาก */
+            background: #ffffff; /* กล่องเป็นสีขาว */
+            padding: 2.5rem; /* เพิ่ม padding ให้มีพื้นที่หายใจมากขึ้น */
+            border-radius: 16px; /* เพิ่มความโค้งมนให้ดูนุ่มนวลและทันสมัย */
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); /* เงาที่ดูเบาแต่มีมิติ */
+            width: 320px; /* ขยายความกว้างขึ้นเล็กน้อย */
+            max-width: 90%; 
+            transition: all 0.3s ease; /* เพิ่ม animation เล็กน้อย */
         }
+
+        /* ** Header/Title Style (เพิ่มเอง) ** */
+        .container h2 {
+            text-align: center;
+            color: #1e3a8a; /* สีน้ำเงินเข้ม */
+            margin-bottom: 2rem;
+            font-weight: 700;
+            font-size: 1.8rem;
+        }
+
+        /* ** Label Styles ** */
         label {
-            display: block; /* */
-            margin-bottom: 0.5rem; /* */
-            font-weight: bold; /* */
+            display: block;
+            margin-bottom: 0.6rem;
+            font-weight: 600; /* เน้นให้ Label ชัดเจน */
+            color: #333;
+            font-size: 1rem;
         }
+
+        /* ** Input Field Styles ** */
         input[type="text"] {
-            width: 100%; /* */
-            padding: 0.75rem; /* */
-            box-sizing: border-box; /* เพื่อให้ padding ไม่ขยายกล่อง */
-            border: 1px solid #ccc; /* */
-            border-radius: 4px; /* */
-            font-size: 1.2rem; /* */
+            width: 100%;
+            padding: 1rem 0.75rem; /* เพิ่มความสูงของกล่อง Input */
+            box-sizing: border-box;
+            border: 1px solid #d1d5db; /* เส้นขอบสีเทาอ่อนลง */
+            border-radius: 10px; /* โค้งมนเข้ากับ Container */
+            font-size: 1.1rem; 
+            color: #1f2937; /* สีข้อความเข้ม */
+            margin-bottom: 1.5rem; /* เพิ่มระยะห่างด้านล่าง */
+            transition: border-color 0.3s, box-shadow 0.3s;
         }
+
+        /* ** Input Focus Effect (สำคัญ: ทำให้ดูเป็น Professional) ** */
+        input[type="text"]:focus {
+            border-color: #3b82f6; /* เปลี่ยนเป็นสีน้ำเงินสดใสเมื่อ Focus */
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3); /* เพิ่มเงารอบขอบ (Ring effect) */
+            outline: none; /* ลบเส้นกรอบ default ของ browser */
+        }
+
+        /* ** Result Box Styles ** */
         #result-box {
-            margin-top: 1.5rem; /* */
-            padding: 1rem; /* */
-            background: #e9f5ff; /* */
-            border: 1px solid #b3d7ff; /* */
-            border-radius: 4px; /* */
-            font-size: 1.5rem; /* */
-            font-weight: bold; /* */
-            color: #0056b3; /* */
-            text-align: center; /* */
-            min-height: 50px; /* */
+            margin-top: 2rem;
+            padding: 1.5rem; 
+            background: #eff6ff; /* สีฟ้าอ่อนมาก ดูสะอาดตา */
+            border: 2px solid #93c5fd; /* ขอบสีน้ำเงินอ่อนที่ชัดเจนขึ้น */
+            border-radius: 10px; 
+            font-size: 1.5rem; 
+            font-weight: 700; /* เน้นข้อความให้หนักขึ้น */
+            color: #1e40af; /* สีน้ำเงินเข้ม */
+            text-align: center; 
+            min-height: 60px; /* เพิ่มความสูงขั้นต่ำ */
+            display: flex; /* จัดให้อยู่ตรงกลางด้วย Flexbox */
+            align-items: center;
+            justify-content: center;
         }
+
+        /* ** Placeholder Text Style ** */
         .placeholder {
-            color: #999; /* */
-            font-weight: normal; /* */
-            font-size: 1.1rem; /* */
+            color: #9ca3af; 
+            font-weight: 500;
+            font-size: 1.1rem;
         }
     </style>
 </head>
@@ -1439,3 +1472,4 @@
 </body>
 
 </html>
+
