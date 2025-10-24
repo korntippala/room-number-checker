@@ -1461,7 +1461,7 @@
     const toggleBtn = document.getElementById("toggleModeBtn");
 
     function updateResult() {
-      const input = inputField.value.trim();
+      const input = inputField.value.trim().toUpperCase(); // รองรับตัวพิมพ์เล็ก
       let result = "";
 
       if (isRoomToHouseMode) {
