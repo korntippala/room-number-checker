@@ -1,119 +1,130 @@
 <!DOCTYPE html>
 <html lang="th">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>เช็คเลขที่บ้านคอนโด</title>
-   <style>
-        /* ** Global Styles & Layout ** */
-        body {
-            font-family: 'Poppins', 'Kanit', sans-serif; /* ใช้ฟอนต์ที่ดูทันสมัยและสะอาดตา */
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh; 
-            background-color: #f5f7fa; /* สีพื้นหลังโทนอ่อนนุ่มนวล */
-            margin: 0;
-            /* เพิ่ม padding ด้านล่างให้มากพอสำหรับมือถือและแป้นพิมพ์ */
-            padding-bottom: 250px; 
-            padding-top: 30px;
-            box-sizing: border-box;
-        }
-        
-        /* ** Container Styles ** */
-        .container {
-            background: #ffffff; /* กล่องเป็นสีขาว */
-            padding: 2.5rem; /* เพิ่ม padding ให้มีพื้นที่หายใจมากขึ้น */
-            border-radius: 16px; /* เพิ่มความโค้งมนให้ดูนุ่มนวลและทันสมัย */
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); /* เงาที่ดูเบาแต่มีมิติ */
-            width: 320px; /* ขยายความกว้างขึ้นเล็กน้อย */
-            max-width: 90%; 
-            transition: all 0.3s ease; /* เพิ่ม animation เล็กน้อย */
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>เช็คเลขที่บ้านคอนโด</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
 
-        /* ** Header/Title Style (เพิ่มเอง) ** */
-        .container h2 {
-            text-align: center;
-            color: #1e3a8a; /* สีน้ำเงินเข้ม */
-            margin-bottom: 2rem;
-            font-weight: 700;
-            font-size: 1.0rem;
-        }
+    body {
+      font-family: 'Kanit', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to bottom right, #e0f2fe, #f0f9ff);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+    }
 
-        /* ** Label Styles ** */
-        label {
-            display: block;
-            margin-bottom: 0.6rem;
-            font-weight: 600; /* เน้นให้ Label ชัดเจน */
-            color: #333;
-            font-size: 1rem;
-        }
+    .container {
+      background: #ffffff;
+      margin-top: 40px;
+      padding: 24px;
+      border-radius: 20px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+      width: 90%;
+      max-width: 400px;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
 
-        /* ** Input Field Styles ** */
-        input[type="text"] {
-            width: 100%;
-            padding: 1rem 0.75rem; /* เพิ่มความสูงของกล่อง Input */
-            box-sizing: border-box;
-            border: 1px solid #d1d5db; /* เส้นขอบสีเทาอ่อนลง */
-            border-radius: 10px; /* โค้งมนเข้ากับ Container */
-            font-size: 1.1rem; 
-            color: #1f2937; /* สีข้อความเข้ม */
-            margin-bottom: 1.5rem; /* เพิ่มระยะห่างด้านล่าง */
-            transition: border-color 0.3s, box-shadow 0.3s;
-        }
+    h2 {
+      text-align: center;
+      color: #1d4ed8;
+      margin-bottom: 20px;
+      font-size: 1.4rem;
+    }
 
-        /* ** Input Focus Effect (สำคัญ: ทำให้ดูเป็น Professional) ** */
-        input[type="text"]:focus {
-            border-color: #3b82f6; /* เปลี่ยนเป็นสีน้ำเงินสดใสเมื่อ Focus */
-            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3); /* เพิ่มเงารอบขอบ (Ring effect) */
-            outline: none; /* ลบเส้นกรอบ default ของ browser */
-        }
+    label {
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: #374151;
+    }
 
-        /* ** Result Box Styles ** */
-        #result-box {
-            margin-top: 2rem;
-            padding: 1.5rem; 
-            background: #eff6ff; /* สีฟ้าอ่อนมาก ดูสะอาดตา */
-            border: 2px solid #93c5fd; /* ขอบสีน้ำเงินอ่อนที่ชัดเจนขึ้น */
-            border-radius: 10px; 
-            font-size: 1.5rem; 
-            font-weight: 700; /* เน้นข้อความให้หนักขึ้น */
-            color: #1e40af; /* สีน้ำเงินเข้ม */
-            text-align: center; 
-            min-height: 60px; /* เพิ่มความสูงขั้นต่ำ */
-            display: flex; /* จัดให้อยู่ตรงกลางด้วย Flexbox */
-            align-items: center;
-            justify-content: center;
-        }
+    input[type="text"] {
+      padding: 14px;
+      font-size: 1.1rem;
+      border: 1px solid #d1d5db;
+      border-radius: 10px;
+      margin-bottom: 20px;
+      transition: 0.3s;
+    }
 
-        /* ** Placeholder Text Style ** */
-        .placeholder {
-            color: #9ca3af; 
-            font-weight: 500;
-            font-size: 1.1rem;
-        }
-    </style>
+    input[type="text"]:focus {
+      border-color: #3b82f6;
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3);
+      outline: none;
+    }
+
+    #toggleModeBtn {
+      background-color: #3b82f6;
+      color: white;
+      border: none;
+      padding: 12px;
+      border-radius: 10px;
+      font-size: 1rem;
+      cursor: pointer;
+      margin-bottom: 20px;
+      transition: background-color 0.3s;
+    }
+
+    #toggleModeBtn:hover {
+      background-color: #2563eb;
+    }
+
+    #result-box {
+      position: sticky;
+      top: 0;
+      background: #e0f2fe;
+      border: 2px solid #60a5fa;
+      border-radius: 12px;
+      padding: 16px;
+      font-size: 1.3rem;
+      font-weight: bold;
+      color: #1e40af;
+      text-align: center;
+      min-height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 10;
+    }
+
+    .placeholder {
+      color: #9ca3af;
+      font-weight: 500;
+    }
+
+    @media (max-height: 700px) {
+      .container {
+        margin-top: 20px;
+        padding-bottom: 100px;
+      }
+    }
+  </style>
 </head>
 <body>
-
-    <div class="container">
+  <div class="container">
     <h2>เช็คเลขที่บ้าน SVS2 🏡</h2>
-        <label for="roomInput">กรอกเลขห้อง:</label>
-        <input type="text" id="roomInput" placeholder="เช่น 101 หรือ A202">
-        <label for="result-box" style="margin-top: 1.5rem;">เลขที่บ้าน (อัตโนมัติ):</label>
-        <div id="result-box">
-            <span class="placeholder">(รอป้อนเลขห้อง...)</span>
-        </div>
+
+    <div id="result-box">
+      <span class="placeholder">(รอป้อนข้อมูล...)</span>
     </div>
 
-    <script>
-        // --- ส่วนสำคัญ: ฐานข้อมูลของเรา ---
-        // คุณต้องแก้ไขข้อมูลตรงนี้ ให้เป็นข้อมูลจริงของคอนโดคุณ
-        // "เลขห้อง": "เลขที่บ้าน"
-        const houseNumberData = {
-            
-  "A104": "130/12",
+    <button id="toggleModeBtn">🔄 สลับโหมด: กรอกเลขห้อง</button>
+
+    <label id="inputLabel" for="roomInput">กรอกเลขห้อง:</label>
+    <input type="text" id="roomInput" placeholder="เช่น A202 หรือ 130/45" />
+  </div>
+
+  <script>
+    const houseNumberData = {
+      "A104": "130/12",
   "A105": "130/13",
   "A106": "130/14",
   "A107": "130/15",
@@ -1439,41 +1450,50 @@
   "F822": "135/185",
   "F823": "135/186",
   "F824": "135/187"
+      // เพิ่มข้อมูลจริงของคุณตรงนี้
+    };
 
-            // เพิ่มข้อมูลห้องอื่นๆ ที่นี่
-        };
-        // ------------------------------------
+    let isRoomToHouseMode = true;
 
-        // 1. ดึง element ที่เราจะใช้งาน
-        const roomInput = document.getElementById('roomInput');
-        const resultBox = document.getElementById('result-box');
-        const placeholder = '<span class="placeholder">(รอป้อนเลขห้อง...)</span>';
+    const inputLabel = document.getElementById("inputLabel");
+    const inputField = document.getElementById("roomInput");
+    const resultBox = document.getElementById("result-box");
+    const toggleBtn = document.getElementById("toggleModeBtn");
 
-        // 2. สร้าง "ตัวดักฟัง" เหตุการณ์
-        // เราใช้ 'input' ซึ่งจะทำงานทุกครั้งที่มีการพิมพ์, ลบ, หรือวางข้อความ
-        roomInput.addEventListener('input', function() {
-            // 3. อ่านค่าที่ผู้ใช้พิมพ์ (แปลงเป็นตัวพิมพ์ใหญ่เผื่อไว้)
-            const inputRoom = roomInput.value.trim().toUpperCase();
+    function updateResult() {
+      const input = inputField.value.trim();
+      let result = "";
 
-            // 4. ค้นหาในฐานข้อมูล
-            if (inputRoom === "") {
-                // ถ้าช่องว่างเปล่า ก็แสดง placeholder
-                resultBox.innerHTML = placeholder;
-            } else if (houseNumberData[inputRoom]) {
-                // ถ้าเจอข้อมูล
-                resultBox.textContent = houseNumberData[inputRoom];
-            } else {
-                // ถ้าไม่เจอข้อมูล
-                resultBox.innerHTML = '<span class="placeholder" style="color: red;">ไม่พบข้อมูล</span>';
-            }
-        });
-    </script>
+      if (isRoomToHouseMode) {
+        result = houseNumberData[input] || "ไม่พบเลขที่บ้าน";
+      } else {
+        const found = Object.entries(houseNumberData).find(
+          ([room, house]) => house === input
+        );
+        result = found ? found[0] : "ไม่พบเบอร์ห้อง";
+      }
 
+      resultBox.innerHTML = `<span>${result}</span>`;
+    }
+
+    inputField.addEventListener("input", updateResult);
+
+    toggleBtn.addEventListener("click", () => {
+      isRoomToHouseMode = !isRoomToHouseMode;
+
+      if (isRoomToHouseMode) {
+        inputLabel.textContent = "กรอกเลขห้อง:";
+        inputField.placeholder = "เช่น A202";
+        toggleBtn.textContent = "🔄 สลับโหมด: กรอกเลขห้อง";
+      } else {
+        inputLabel.textContent = "กรอกเลขที่บ้าน:";
+        inputField.placeholder = "เช่น 130/45";
+        toggleBtn.textContent = "🔄 สลับโหมด: กรอกเลขที่บ้าน";
+      }
+
+      inputField.value = "";
+      resultBox.innerHTML = `<span class="placeholder">(รอป้อนข้อมูล...)</span>`;
+    });
+  </script>
 </body>
-
 </html>
-
-
-
-
-
